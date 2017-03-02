@@ -23,6 +23,21 @@
     <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
     <style>
+         :root {
+            --base: blue;
+            --spacing: 10px;
+            --blur: 10px;
+        }
+
+        img {
+            padding: var(--spacing);
+            background: var(--base);
+            filter: blur(var(--blur));
+        }
+
+        .hl{
+          color: var(--base);
+        }
 
         body {
             text-align: center;
@@ -46,6 +61,17 @@
     </style>
 
     <script>
+    /* jshint esversion: 6 */
+    const inputs = document.querySelectorAll('.controls input');
+
+    function updateCss(){
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, `${this.value}`+suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('mousemove', updateCss));
+    inputs.forEach(input => input.addEventListener('change', updateCss));
+    // inputs.forEach(input => input.addEventListener('oninput', updateCss));
 
     </script>
 
